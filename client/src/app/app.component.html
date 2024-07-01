@@ -1,0 +1,18 @@
+<h1>{{title}}</h1>
+
+<ul>
+  @for (user of users; track user.id) {
+    <li>
+      {{user.id}} - {{user.userName}}
+    </li>
+  }
+
+</ul>
+
+<ul>
+  @for (player of players; track player.id) {
+    <li>
+      {{player.id}} - {{player.playerName}}
+    </li>
+  }
+</ul>

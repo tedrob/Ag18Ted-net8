@@ -18,7 +18,7 @@
               <a routerLink="/games" routerLinkActive="active" class="nav-link">Games</a>
             </li>
             <li class="nav-item">
-              <a routerLink="/lotteries" routerLinkActive="active" class="nav-link">lotteries</a>
+              <a routerLink="/lotteries" routerLinkActive="active" class="nav-link">Lotteries</a>
             </li>
             <li class="nav-item">
               <a routerLink="/lists" routerLinkActive="active" class="nav-link">List</a>
@@ -27,6 +27,9 @@
               <a routerLink="/messages" routerLinkActive="active" class="nav-link">Messages</a>
             </li>
       }
+      <li class="nav-item">
+        <a routerLink="/errors" routerLinkActive="active" class="nav-link">Errors</a>
+      </li>
       </ul>
 
     @if (accountService.currentUser()) {

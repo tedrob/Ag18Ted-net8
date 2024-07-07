@@ -1,27 +1,27 @@
 using API.Data;
 using API.Entities;
+using API.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers;
 
-public class PlayersController(DataContext context) : BaseApiController
+public class PlayersController(IPlayerRepository playerRepository) : BaseApiController
 {
-    [AllowAnonymous]
+    [Authorize]
     [HttpGet]
     public async Task<ActionResult<IEnumerable<AppPlayer>>> GetPlayers()
     {
-        var players = await context.Players.ToListAsync();
+        var players = await playerRepository.GetPlayersAsync();
 
-        return players;
+        return Ok(players);
     }
 
-    [Authorize]
-    [HttpGet("{id:int}")] // /api/users/3
-    public async Task<ActionResult<AppPlayer>> GetPlayers(int id)
+    [HttpGet("{playername}")] // /api/users/3
+    public async Task<ActionResult<AppPlayer>> GetPlayers(string playername)
     {
-        var player = await context.Players.FindAsync(id);
+        var player = await playerRepository.GetPlayerByPlayernameAsync(playername);
 
         if (player == null) return NotFound();
 

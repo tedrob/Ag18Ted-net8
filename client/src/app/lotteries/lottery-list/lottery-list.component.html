@@ -1,1 +1,7 @@
-<p>lottery-list works!</p>
+<div class="row">
+  <div class="col-2">
+    @for (lottery of lotteries; track lottery.id) {
+      <p>{{lottery.lotteryname}}</p>
+    }
+  </div>
+</div>

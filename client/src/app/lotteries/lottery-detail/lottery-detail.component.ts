@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { LotteriesService } from '../../_services/lotteries.service';
+import { ActivatedRoute } from '@angular/router';
+import { Lottery } from '../../_models/lottery';
 
 @Component({
   selector: 'app-lottery-detail',
@@ -7,6 +10,14 @@ import { Component } from '@angular/core';
   templateUrl: './lottery-detail.component.html',
   styleUrl: './lottery-detail.component.css'
 })
-export class LotteryDetailComponent {
+export class LotteryDetailComponent implements OnInit{
+  private lotteryService = inject(LotteriesService);
+  private route = inject(ActivatedRoute);
+  lottery?: Lottery;
+
+  ngOnInit(): void {
+  }
+
+  loadLottery() {}
 
 }

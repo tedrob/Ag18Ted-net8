@@ -1,0 +1,102 @@
+[
+    {
+        "LotteryName": "MegaMillions",
+        "State": "All",
+        "Created": "2020-05-24",
+        "MatchingNumbers": [
+            {
+                "MatchingNumbers": "09,11,19,33,56-10"
+            }
+        ]
+    },
+    {
+        "LotteryName": "Powerball",
+        "State": "All",
+        "Created": "2020-05-30",
+        "MatchingNumbers": [
+            {
+                "MatchingNumbers": "09,11,19,33,56-10"
+            }
+        ]
+    },
+    {
+        "LotteryName": "LuckyDayLotto",
+        "State": "Illinois",
+        "Created": "2019-10-27",
+        "MatchingNumbers": [
+            {
+                "MatchingNumbers": "09,11,19,33,56-10"
+            }
+        ]
+    },
+    {
+        "LotteryName": "Lotto",
+        "State": "Illinois",
+        "Created": "2019-07-22",
+        "MatchingNumbers": [
+            {
+                "MatchingNumbers": "09,11,19,33,56-10"
+            }
+        ]
+    },
+    {
+        "LotteryName": "JerseyCash5",
+        "State": "New Jersy",
+        "Created": "2019-09-20",
+        "MatchingNumbers": [
+            {
+                "MatchingNumbers": "09,11,19,33,56-10"
+            }
+        ]
+    },
+    {
+        "LotteryName": "CASH4LIFE",
+        "State": "New Jersy",
+        "Created": "2019-09-20",
+        "MatchingNumbers": [
+            {
+                "MatchingNumbers": "09,11,19,33,56-10"
+            }
+        ]
+    },
+    {
+        "LotteryName": "CASH5",
+        "State": "North Carolina",
+        "Created": "2019-09-20",
+        "MatchingNumbers": [
+            {
+                "MatchingNumbers": "09,11,19,33,56-10"
+            }
+        ]
+    },
+    {
+        "LotteryName": "LuckyForLIFE",
+        "State": "North Carolina",
+        "Created": "2019-09-20",
+        "MatchingNumbers": [
+            {
+                "MatchingNumbers": "09,11,19,33,56-10"
+            }
+        ]
+    },
+    {
+        "LotteryName": "SuperLottoPlus",
+        "State": "California",
+        "Created": "2019-09-20",
+        "MatchingNumbers": [
+            {
+                "MatchingNumbers": "09,11,19,33,56-10"
+            }
+        ]
+    },
+    {
+        "LotteryName": "Fantasy5",
+        "State": "California",
+        "Created": "2019-09-20",
+        "MatchingNumbers": [
+            {
+                "MatchingNumbers": "09,11,19,33,56-10"
+            }
+        ]
+    }
+]

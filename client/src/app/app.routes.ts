@@ -25,7 +25,7 @@ export const routes: Routes = [
     children: [
       { path: 'about', component: AboutComponent },
       { path: 'members',component: MemberListComponent},
-      { path: 'members/:id', component: MemberDetailComponent },
+      { path: 'members/:username', component: MemberDetailComponent },
       { path: 'players', component: PlayerListComponent },
       { path: 'players/:id', component: PlayerDetailComponent },
       { path: 'games', component: GameListComponent },

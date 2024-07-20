@@ -1,1 +1,14 @@
-<p>player-list works!</p>
+<div class="container">
+  <hr />
+  <app-player-start></app-player-start>
+  <hr />
+  <div class="row">
+    <div class="col-xs-12" id="left">
+      @for (player of players; track player.id) {
+      <div class="col-2">
+        <p>{{ player.description }}</p>
+      </div>
+      }
+    </div>
+  </div>
+</div>

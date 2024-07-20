@@ -1,5 +1,8 @@
-﻿namespace API.Entities;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
+namespace API.Entities;
+
+[Table("Players")]
 public class AppPlayer
 {
     public int Id { get; set; }

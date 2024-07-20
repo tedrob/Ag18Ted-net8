@@ -26,6 +26,10 @@ namespace API.Data.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("LotteryName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("State")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -114,7 +118,7 @@ namespace API.Data.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("API.Entities.Game", b =>
+            modelBuilder.Entity("API.Entities.MatchingNumber", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -123,15 +127,14 @@ namespace API.Data.Migrations
                     b.Property<int>("AppLotteryId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("gameName")
-                        .IsRequired()
+                    b.Property<string>("Numbers")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AppLotteryId");
 
-                    b.ToTable("Games");
+                    b.ToTable("MatchingNumbers");
                 });
 
             modelBuilder.Entity("API.Entities.Photo", b =>
@@ -160,10 +163,10 @@ namespace API.Data.Migrations
                     b.ToTable("Photos");
                 });
 
-            modelBuilder.Entity("API.Entities.Game", b =>
+            modelBuilder.Entity("API.Entities.MatchingNumber", b =>
                 {
                     b.HasOne("API.Entities.AppLottery", "AppLottery")
-                        .WithMany("Games")
+                        .WithMany("MatchingNumbers")
                         .HasForeignKey("AppLotteryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -184,7 +187,7 @@ namespace API.Data.Migrations
 
             modelBuilder.Entity("API.Entities.AppLottery", b =>
                 {
-                    b.Navigation("Games");
+                    b.Navigation("MatchingNumbers");
                 });
 
             modelBuilder.Entity("API.Entities.AppUser", b =>

@@ -1,4 +1,6 @@
 export interface Player {
+  id: number
   playername: string
-  desciption: string
+  description: string
+  created: Date
 }

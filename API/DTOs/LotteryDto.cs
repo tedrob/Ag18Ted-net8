@@ -6,5 +6,4 @@ public class LotteryDto
     public string? Lotteryname { get; set; }
     public string? State { get; set; }
     public DateTime Created { get; set; }
-
 }

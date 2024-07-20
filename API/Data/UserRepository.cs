@@ -16,19 +16,16 @@ public class UserRepository(DataContext context, IMapper mapper) : IUserReposito
             .ProjectTo<MemberDto>(mapper.ConfigurationProvider)
             .SingleOrDefaultAsync();
     }
-
     public async Task<IEnumerable<MemberDto?>> GetMembersAsync()
     {
         return await context.Users
             .ProjectTo<MemberDto>(mapper.ConfigurationProvider)
             .ToListAsync();
     }
-
     public async Task<AppUser?> GetUserByIdAsync(int id)
     {
         return await context.Users.FindAsync(id);
     }
-
     public async Task<AppUser?> GetUserByUsernameAsync(string username)
     {
         return await context.Users

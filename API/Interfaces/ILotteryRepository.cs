@@ -1,13 +1,15 @@
+using API.DTOs;
 using API.Entities;
 
 namespace API.Interfaces;
 
 public interface ILotteryRepository
 {
-    void Update(AppLottery user);
+    void Update(AppLottery lottery);
     Task<bool> SaveAllAsync();
-    Task<IEnumerable<AppLottery>> GetLotteryAsync();
     Task<AppLottery?> GetLotteryByIdAsync(int id);
     Task<AppLottery?> GetLotteryByLotterynameAsync(string lotteryname);
+    Task<IEnumerable<LotteryDto?>> GetLotteriesAsync();
+    Task<LotteryDto?> GetLotteryAsync(string lotteryname);
 
 }

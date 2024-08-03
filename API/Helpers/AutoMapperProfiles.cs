@@ -16,5 +16,8 @@ public class AutoMapperProfiles : Profile
         CreateMap<Photo, PhotoDto>();
         CreateMap<AppPlayer, PlayerDto>();
         CreateMap<AppLottery, LotteryDto>();
+        CreateMap<MemberUpdateDto, AppUser>();
+        CreateMap<PlayerUpdateDto, AppPlayer>();
+        CreateMap<LotteryUpdateDto, AppLottery>();
     }
 }

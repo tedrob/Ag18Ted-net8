@@ -1,0 +1,12 @@
+.articles {
+  background-image: url('/assets/img/sticky.jpg');
+  background-repeat: no-repeat;
+  background-size:100% 100%!important;
+  height:50em;
+  overflow-x: hidden;
+  /* overflow-y: hidden; */
+}
+.about-item {
+  background-color: rgb(187, 184, 173);
+  background-size:100% 100%!important;
+}

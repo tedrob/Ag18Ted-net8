@@ -15,9 +15,9 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class MemberEditComponent implements OnInit {
   @ViewChild('editForm') editForm?: NgForm;
-  @HostListener('window:beforeUnload', ['$event']) notify($event:any){
+  @HostListener('window:beforeunload', ['$event']) notify($event:any){
     if (this.editForm?.dirty) {
-      $event.returnValus = true;
+      $event.returnValue = true;
     }
   }
 

@@ -1,4 +1,4 @@
-import { Component, inject, input, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { PlayersService } from '../../_services/players.service';
 import { Player } from '../../_models/player';
 import { PlayerStartComponent } from '../player-start/player-start.component';
@@ -19,7 +19,7 @@ export class PlayerListComponent implements OnInit {
   private router = inject(Router);
   private route = inject(ActivatedRoute);
   players: Player[] = [];
-  
+
   ngOnInit(): void {
     this.loadPlayers();
   }

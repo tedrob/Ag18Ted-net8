@@ -8,8 +8,8 @@ import { DomSanitizer } from '@angular/platform-browser';
   selector: 'app-player-detail',
   standalone: true,
   imports: [],
-  templateUrl: './player-detail.component.html',
-  styleUrl: './player-detail.component.css',
+  templateUrl: '../player-detail/player-detail.component.html',
+  styleUrl: '../player-detail/player-detail.component.css',
 })
 export class PlayerDetailComponent implements OnInit {
   private sanitizer = inject(DomSanitizer);
@@ -24,9 +24,9 @@ export class PlayerDetailComponent implements OnInit {
   }
 
   loadPlayer() {
-    const username = this.route.snapshot.paramMap.get('username');
-    if (!username) return;
-    this.playerService.getPlayer(username).subscribe({
+    const playername = this.route.snapshot.paramMap.get('playername');
+    if (!playername) return;
+    this.playerService.getPlayer(playername).subscribe({
       next: (player) => {
         this.player = player;
         console.log("test ")

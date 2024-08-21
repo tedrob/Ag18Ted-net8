@@ -51,7 +51,7 @@ export const routes: Routes = [
         title: 'Player',
         component: PlayerComponent,
         children: [
-          
+
         ]
       },
     ],

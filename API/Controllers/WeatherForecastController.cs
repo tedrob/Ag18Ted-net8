@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
 
-
 public class WeatherForecastController : BaseApiController
 {
     private static readonly string[] Summaries = new[]
@@ -10,11 +9,8 @@ public class WeatherForecastController : BaseApiController
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     };
 
-    private readonly ILogger<WeatherForecastController> _logger;
-
-    public WeatherForecastController(ILogger<WeatherForecastController> logger)
+    public WeatherForecastController()
     {
-        _logger = logger;
     }
 
     [HttpGet(Name = "GetWeatherForecast")]

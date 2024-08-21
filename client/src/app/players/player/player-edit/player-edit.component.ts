@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { Player } from '../../_models/player';
-import { AccountService } from '../../_services/account.service';
-import { PlayersService } from '../../_services/players.service';
+import { Player } from '../../../_models/player';
+import { AccountService } from '../../../_services/account.service';
+import { PlayersService } from '../../../_services/players.service';
 
 @Component({
   selector: 'app-player-edit',
@@ -26,5 +26,4 @@ export class PlayerEditComponent implements OnInit {
       next: player => this.player = player
     })
   }
-
 }

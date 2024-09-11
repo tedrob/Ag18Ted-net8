@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-2">
-    @for (lottery of lotteries; track lottery.id) {
+    @for (lottery of lotteryService.lotteries(); track lottery.id) {
       <p>{{lottery.lotteryname}}</p>
     }
   </div>

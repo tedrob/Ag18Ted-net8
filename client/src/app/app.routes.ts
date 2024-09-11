@@ -40,6 +40,7 @@ export const routes: Routes = [
       { path: 'players/:id', component: PlayerDetailComponent },
       { path: 'players/edit', component: PlayerEditComponent },
 
+
       { path: 'games', component: GameListComponent },
       { path: 'games/:id', component: GameDetailComponent },
       { path: 'lotteries', component: LotteryListComponent },
@@ -51,7 +52,7 @@ export const routes: Routes = [
         title: 'Player',
         component: PlayerComponent,
         children: [
-
+          {path: 'player', component: PlayerListComponent}
         ]
       },
     ],

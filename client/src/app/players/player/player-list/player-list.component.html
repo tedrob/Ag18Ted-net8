@@ -1,1 +1,9 @@
-<p>player-list works!</p>
+<div class="container-fluid">
+  <app-player-start></app-player-start>
+  <p>player-list works! (p-list works 2)</p>
+  <div class="row">
+    @for (player of playerService.players(); track player.id) {
+      <div class="col-xs-4"></div>
+    }
+  </div>
+</div>

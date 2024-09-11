@@ -1,26 +1,22 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { LotteriesService } from '../../_services/lotteries.service';
-import { Lottery } from '../../_models/lottery';
+import { LotteryCardComponent } from '../lottery-card/lottery-card.component';
 
 @Component({
   selector: 'app-lottery-list',
   standalone: true,
-  imports: [],
+  imports: [LotteryCardComponent],
   templateUrl: './lottery-list.component.html',
-  styleUrl: './lottery-list.component.css'
+  styleUrl: './lottery-list.component.css',
 })
 export class LotteryListComponent implements OnInit {
-  private lotteryService = inject(LotteriesService);
-  lotteries: Lottery[] = [];
+  lotteryService = inject(LotteriesService);
 
   ngOnInit(): void {
-    this.loadLotteries();
+    if (this.lotteryService.lotteries().length === 0) this.loadLotteries();
   }
 
   loadLotteries() {
-    this.lotteryService.geLotteries().subscribe({
-      next: lotteries => this.lotteries = lotteries
-    })
+    this.lotteryService.getLotteries();
   }
-
 }

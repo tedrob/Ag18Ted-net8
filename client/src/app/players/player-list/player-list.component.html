@@ -13,7 +13,7 @@
         routerLinkActive="active"
         style="cursor: pointer"
       >
-        @for (player of players; track player.id) {
+        @for (player of playerService.players(); track player.id) {
         <h5 class="list-group-item-heading player-item">
           {{ player.description }}
         </h5>

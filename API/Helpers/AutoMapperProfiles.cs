@@ -19,5 +19,7 @@ public class AutoMapperProfiles : Profile
         CreateMap<MemberUpdateDto, AppUser>();
         CreateMap<PlayerUpdateDto, AppPlayer>();
         CreateMap<LotteryUpdateDto, AppLottery>();
+        CreateMap<RegisterDto, AppUser>();
+        CreateMap<string, DateOnly>().ConvertUsing(s => DateOnly.Parse(s));
     }
 }

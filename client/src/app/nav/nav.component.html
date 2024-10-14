@@ -61,13 +61,11 @@
     <div dropdown class="dropdown">
       <img
         class="me-2"
-        src="{{
-          accountService.currentUser()?.photoUrl || './assets/img/user.png'
-        }}"
+        src="{{accountService.currentUser()?.photoUrl || './assets/img/user.png'}}"
         alt="user main imgage"
       />
       <a dropdownToggle class="dropdown-toggle text-light text-decoration-none">
-        Wecome {{ accountService.currentUser()?.username | titlecase }}
+        Wecome {{accountService.currentUser()?.knownAs}}
       </a>
       <div *dropdownMenu class="dropdown-menu">
         <a routerLink="/member/edit" class="dropdown-item">Edit profile</a>

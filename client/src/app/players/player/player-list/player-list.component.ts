@@ -1,13 +1,14 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { PlayerStartComponent } from '../player-start/player-start.component';
 import { PlayersService } from '../../../_services/players.service';
-import { Player } from '../../../_models/player';
-import { CommonModule } from '@angular/common';
+import { PlayerStartComponent } from '../player-start/player-start.component';
+import { PlayerCardComponent } from '../player-card/player-card.component';
+import { PlayerDetailComponent } from '../player-detail/player-detail.component';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-player-list',
   standalone: true,
-  imports: [CommonModule, PlayerStartComponent],
+  imports: [PlayerStartComponent, PlayerCardComponent, PlayerDetailComponent, RouterLink, RouterOutlet],
   templateUrl: './player-list.component.html',
   styleUrl: './player-list.component.css',
 })

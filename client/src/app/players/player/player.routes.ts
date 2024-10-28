@@ -8,16 +8,16 @@ import { preventUnsavedChangesGuard } from '../../_guards/prevent-unsaved-change
 
 export const playerRoutes: Routes = [
   {
-    path: 'players/player',
-    title: 'players/player',
+    path: 'player',
+    title: 'Player',
     component: PlayerComponent,
     runGuardsAndResolvers: 'always',
     canActivate: [authGuard],
     children: [
-      { path: 'players/player', component: PlayerListComponent },
-      { path: 'players/player/:playername', component: PlayerDetailComponent },
+      { path: 'player', component: PlayerListComponent },
+      { path: 'player/:playername', component: PlayerDetailComponent },
       {
-        path: 'players/player/edit',
+        path: 'players/player/:id/edit',
         component: PlayerEditComponent,
         canDeactivate: [preventUnsavedChangesGuard],
       },

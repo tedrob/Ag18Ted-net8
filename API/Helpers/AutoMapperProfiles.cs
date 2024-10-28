@@ -14,9 +14,9 @@ public class AutoMapperProfiles : Profile
             .ForMember(d => d.PhotoUrl, o =>
                 o.MapFrom(s => s.Photos.FirstOrDefault(x => x.IsMain)!.Url));
         CreateMap<Photo, PhotoDto>();
-        CreateMap<AppPlayer, PlayerDto>();
-        CreateMap<AppLottery, LotteryDto>();
         CreateMap<MemberUpdateDto, AppUser>();
+        CreateMap<AppPlayer, PlayerDto>();
+        CreateMap<AppLottery, LotteryDto>();        
         CreateMap<PlayerUpdateDto, AppPlayer>();
         CreateMap<LotteryUpdateDto, AppLottery>();
         CreateMap<RegisterDto, AppUser>();

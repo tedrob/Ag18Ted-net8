@@ -14,8 +14,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class PlayerDetailComponent implements OnInit {
   private sanitizer = inject(DomSanitizer);
   private playerService = inject(PlayersService);
-  private route = inject(ActivatedRoute);
-  private router = inject(Router);
+  activatedRoute = inject(ActivatedRoute);
+  router = inject(Router);
   player?: Player;
   id!: number;
 
@@ -24,7 +24,8 @@ export class PlayerDetailComponent implements OnInit {
   }
 
   loadPlayer() {
-    const playername = this.route.snapshot.paramMap.get('playername');
+    const playername = this.activatedRoute.snapshot.paramMap.get('playername');
+    console.log("test no playername returned "+ playername)
     if (!playername) return;
     this.playerService.getPlayer(playername).subscribe({
       next: (player) => {

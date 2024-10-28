@@ -1,9 +1,9 @@
 import { Component, input } from '@angular/core';
-import { Player } from '../../../_models/player';
 import { PlayerStartComponent } from '../player-start/player-start.component';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { PlayerListComponent } from "../player-list/player-list.component";
+import { Player } from '../../../_models/player';
 
 @Component({
   selector: 'app-player-card',
@@ -16,3 +16,4 @@ export class PlayerCardComponent {
   player = input.required<Player>();
 
 }
+

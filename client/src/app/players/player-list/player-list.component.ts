@@ -1,6 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { PlayersService } from '../../_services/players.service';
-import { Player } from '../../_models/player';
 import { PlayerStartComponent } from '../player-start/player-start.component';
 import { PlayerCardComponent } from '../player-card/player-card.component';
 import { PlayerItemComponent } from './player-item/player-item.component';

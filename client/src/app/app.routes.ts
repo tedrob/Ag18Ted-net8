@@ -35,8 +35,8 @@ export const routes: Routes = [
         component: MemberEditComponent,
         canDeactivate: [preventUnsavedChangesGuard],
       },
-
       { path: 'players', component: PlayerListComponent },
+      { path: 'players/playername', component: PlayerDetailComponent },
       { path: 'players/:id', component: PlayerDetailComponent },
       { path: 'players/edit', component: PlayerEditComponent },
 
@@ -52,8 +52,11 @@ export const routes: Routes = [
         title: 'Player',
         component: PlayerComponent,
         children: [
-          {path: 'player', component: PlayerListComponent}
-        ]
+
+          { path: 'player', component: PlayerListComponent },
+          { path: 'player/:playername', component: PlayerDetailComponent },
+          { path: 'player/:id', component: PlayerDetailComponent }
+        ],
       },
     ],
   },

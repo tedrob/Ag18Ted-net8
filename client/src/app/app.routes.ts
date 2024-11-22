@@ -19,6 +19,7 @@ import { PlayerEditComponent } from './players/player-edit/player-edit.component
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { preventUnsavedChangesGuard } from './_guards/prevent-unsaved-changes.guard';
 import { PlayerComponent } from './players/player/player.component';
+import { memberDetailedResolver } from './_resolvers/member-detailed.resolver';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -29,7 +30,8 @@ export const routes: Routes = [
     children: [
       { path: 'about', component: AboutComponent },
       { path: 'members', component: MemberListComponent },
-      { path: 'members/:username', component: MemberDetailComponent },
+      { path: 'members/:username', component: MemberDetailComponent,
+          resolve: {member: memberDetailedResolver} },
       {
         path: 'member/edit',
         component: MemberEditComponent,

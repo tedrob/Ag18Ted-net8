@@ -1,0 +1,32 @@
+[
+    {
+        "Lotteryname": "PowerBall",
+        "State": "Illinois",
+        "Created": "2022-12-17"
+    },
+    {
+        "Lotteryname": "MegaMillions",
+        "State": "Illinois",
+        "Created": "2022-12-17"
+    },
+    {
+        "Lotteryname": "Lotto",
+        "State": "Illinois",
+        "Created": "2022-12-17"
+    },
+    {
+        "Lotteryname": "LuckyDay",
+        "State": "Illinois",
+        "Created": "2022-12-17"
+    },
+    {
+        "Lotteryname": "Pick4",
+        "State": "Illinois",
+        "Created": "2022-12-17"
+    },
+    {
+        "Lotteryname": "Pick3",
+        "State": "Illinois",
+        "Created": "2022-12-17"
+    }
+]

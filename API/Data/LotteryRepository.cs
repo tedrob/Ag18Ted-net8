@@ -18,7 +18,7 @@ public class LotteryRepository(DataContext context, IMapper mapper) : ILotteryRe
     public async Task<LotteryDto?> GetLotteryAsync(string lotteryname)
     {
         return await context.Lotteries
-        .Where(x => x.LotteryName == lotteryname)
+        .Where(x => x.Lotteryname == lotteryname)
             .ProjectTo<LotteryDto>(mapper.ConfigurationProvider)
             .SingleOrDefaultAsync();
     }
@@ -31,7 +31,7 @@ public class LotteryRepository(DataContext context, IMapper mapper) : ILotteryRe
     public async Task<AppLottery?> GetLotteryByLotterynameAsync(string lotteryname)
     {
         return await context.Lotteries
-            .SingleOrDefaultAsync(x => x.LotteryName == lotteryname);
+            .SingleOrDefaultAsync(x => x.Lotteryname == lotteryname);
     }    
     
     public async Task<bool> SaveAllAsync()

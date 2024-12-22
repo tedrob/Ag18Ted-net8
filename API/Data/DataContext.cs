@@ -11,6 +11,9 @@ public class DataContext(DbContextOptions options) : IdentityDbContext<AppUser,A
 {
     public DbSet<UserLike> Likes { get; set; } = null!;
     public DbSet<Message> Messages { get; set; } = null!;
+    public DbSet<Group> Groups { get; set; } = null!;
+    public DbSet<Connection> Connections { get; set; } = null!;
+    
     public DbSet<AppPlayer> Players { get; set; } = null!;
     public DbSet<AppLottery> Lotteries { get; set; } = null!;
 

@@ -25,6 +25,7 @@
         "button-name": "off"
       }
     ],
-    "axe/aria": "off"
+    "axe/aria": "off",
+    "detect-css-reflows/composite": "off"
   }
 }

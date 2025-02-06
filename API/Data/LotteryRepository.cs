@@ -33,11 +33,7 @@ public class LotteryRepository(DataContext context, IMapper mapper) : ILotteryRe
         return await context.Lotteries
             .SingleOrDefaultAsync(x => x.Lotteryname == lotteryname);
     }    
-    
-    public async Task<bool> SaveAllAsync()
-    {
-        return await context.SaveChangesAsync() > 0;
-    }
+
 
     public void Update(AppLottery lottery)
     {

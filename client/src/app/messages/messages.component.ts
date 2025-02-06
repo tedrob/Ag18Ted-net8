@@ -44,7 +44,7 @@ export class MessagesComponent implements OnInit {
       next: _ => {
         this.messageService.paginatedResult.update(prev => {
           if (prev && prev.items) {
-            prev.items.slice(
+            prev.items.splice(
               prev.items.findIndex(m => m.id === id), 1);
               return prev;
           }

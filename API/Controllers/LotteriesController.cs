@@ -5,12 +5,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
 [Authorize]
-public class LotteriesController(ILotteryRepository lotteryRepository) : BaseApiController
+public class LotteriesController(IUnitOfWork unitOfWork) : BaseApiController
 {    
     [HttpGet]
     public async Task<ActionResult<IEnumerable<LotteryDto>>> GetLotteriesAsync()
     {
-        var lotteries = await lotteryRepository.GetLotteriesAsync();
+        var lotteries = await unitOfWork.LotteryRepository.GetLotteriesAsync();
 
         return Ok(lotteries);
     }
@@ -18,7 +18,7 @@ public class LotteriesController(ILotteryRepository lotteryRepository) : BaseApi
     [HttpGet("{lotteryname}")] // /api/lotteries/3
     public async Task<ActionResult<LotteryDto>> Getlotteries(string lotteryname)
     {
-        var lottery = await lotteryRepository.GetLotteryAsync(lotteryname);
+        var lottery = await unitOfWork.LotteryRepository.GetLotteryAsync(lotteryname);
 
         if (lottery == null) return NotFound();
 

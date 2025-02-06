@@ -33,11 +33,6 @@ public class PlayerRepository(DataContext context, IMapper mapper) : IPlayerRepo
         return await context.Players
             .SingleOrDefaultAsync(x => x.PlayerName == playername);
     }
-    
-    public async Task<bool> SaveAllAsync()
-    {
-        return await context.SaveChangesAsync() > 0;
-    }
 
     public void Update(AppPlayer player)
     {

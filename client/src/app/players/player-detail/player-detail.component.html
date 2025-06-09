@@ -1,7 +1,13 @@
-test detail 2
-<h1>{{player?.description}} empty</h1>
 @if (player) {
-<div class="col-xs-12 offset-1">
-  <h1>{{ player.description }}</h1>
-</div>
+<p>>
+  {{ player.description }} {{ player.id }}
+  <youtube-player
+    [videoId]="player.description"
+    [height]="440"
+    [width]="460"></youtube-player>
+</p>
+
+} @else{
+<div><router-outlet></router-outlet> test p-display no desc {{ player }}</div>
+
 }

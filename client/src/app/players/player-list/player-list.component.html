@@ -1,27 +1,22 @@
-<div class="container-fluid">
-  <hr />
-  <app-player-start></app-player-start>
-  <hr />
-  <div class="row">
-    <div
-      class="col-xs-12 col-sm-2 player-item-item"
-      id="left"
-      style="text-align: left">
-      <a
-        routerLink="index"
-        class="list-group-item clearfix"
-        routerLinkActive="active"
-        style="cursor: pointer"
-      >
-        @for (player of playerService.players(); track player.id) {
-        <h5 class="list-group-item-heading player-item">
-          {{ player.description }}
-        </h5>
-        }
-      </a>
-    </div>
-    <div class="col-8">
-      <app-player-detail></app-player-detail>
+<div class="container-fluid player">
+  <div class="col-12" style="background-color: aqua">
+    <hr />
+    <app-player-start></app-player-start>
+    <hr />
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-4" style="background-color: yellow">
+          <app-player-item></app-player-item>
+        </div>
+        <div class="col-8" style="background-color: brown">
+          <!-- <app-playerdetail selectedPlayer="selectedPlayer"></app-playerdetail> -->
+          <app-playerdetail></app-playerdetail>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+
+<!-- class="col-xs-12 col-sm-2 player-item-item" -->
+<!-- routerLink="[player.id]" -->
+<!-- <app-player-detail></app-player-detail> -->

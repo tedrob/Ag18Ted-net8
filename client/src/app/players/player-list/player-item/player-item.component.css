@@ -1,4 +1,17 @@
-.player-item {
+#left {
   position: relative;
-  height:.6em;
+  top: 0px;
+  bottom: 0;
+  left: 5px;
+  width: 30%;
+  max-height: 440px;
+  overflow-y: scroll;
+}
+.player-list{
+  position: relative;
+  height: 6em;
+}
+.player-item {
+  background-color: yellow;
+  background-size: 100% 100% !important;
 }

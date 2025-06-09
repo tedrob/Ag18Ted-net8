@@ -1,14 +1,11 @@
-<a
-  [routerLink]="[index]"
-  class="list-group-item clearfix"
-  routerLinkActive="active"
+<p>Select a player item</p>
+
+<div
+  class="list-group-item-heading player-item"
+  *ngFor="let player of playerService.players()"
   style="cursor: pointer"
+  (click)="onSelectedPlayer(player)"
 >
-  @for (player of players; track player.id) {
-  <div class="pull-left">
-    <h5 class="list-group-item-heading player-item">
-      {{ player.description }}
-    </h5>
-  </div>
-  }
-</a>
+  {{ player.description }}
+</div>
+

@@ -5,7 +5,6 @@ import { LotteryCardComponent } from '../lottery-card/lottery-card.component';
 @Component({
   selector: 'app-lottery-list',
   standalone: true,
-  imports: [LotteryCardComponent],
   templateUrl: './lottery-list.component.html',
   styleUrl: './lottery-list.component.css',
 })

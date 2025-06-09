@@ -1,5 +1,6 @@
 import { Directive, inject, Input, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 import { AccountService } from '../_services/account.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Directive({
   selector: '[appHasRole]', //*appHasRole
@@ -11,7 +12,10 @@ export class HasRoleDirective implements OnInit {
   private viewContainerRef = inject(ViewContainerRef);
   private templateRef = inject(TemplateRef);
 
+  constructor(private route:  ActivatedRoute){}
+
   ngOnInit(): void {
+
       if (this.accountService.roles()?.some((r: string) => this.appHasRole.includes(r))) {
         this.viewContainerRef.createEmbeddedView(this.templateRef)
       } else {

@@ -55,5 +55,5 @@ public static class IdentityServiceExtensions
             .AddPolicy("HelperGamerRole", policy => policy.RequireRole("Admin", "Helper"));
 
         return services;
-    }
+    }        
 }

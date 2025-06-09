@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, inject, input, viewChild, ViewChild } from '@angular/core';
+import { AfterViewChecked, Component, inject, input, ViewChild } from '@angular/core';
 import { MessageService } from '../../_services/message.service';
 import { TimeagoModule } from 'ngx-timeago';
 import { FormsModule, NgForm } from '@angular/forms';

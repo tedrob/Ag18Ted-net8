@@ -1,5 +1,5 @@
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 import { routes } from './app.routes';
@@ -10,16 +10,23 @@ import { jwtInterceptor } from './_interceptors/jwt.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { loadingInterceptor } from './_interceptors/loading.interceptor';
 import { TimeagoModule } from 'ngx-timeago';
-import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { testThisRoutes } from './testThis/testThis.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes),
-    provideHttpClient(withInterceptors([errorInterceptor, jwtInterceptor, loadingInterceptor])),
+    provideRouter([...routes, ...testThisRoutes], withComponentInputBinding()),
+    provideHttpClient(
+      withInterceptors([errorInterceptor, jwtInterceptor, loadingInterceptor])
+    ),
     provideAnimations(),
     provideToastr({
       positionClass: 'toast-bottom-right',
     }),
-    importProvidersFrom(NgxSpinnerModule, TimeagoModule.forRoot(), ModalModule.forRoot())
+    importProvidersFrom(
+      NgxSpinnerModule,
+      TimeagoModule.forRoot(),
+      ModalModule.forRoot()
+    ),
   ],
 };

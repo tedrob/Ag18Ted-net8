@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, computed, inject, signal } from '@angular/core';
 import { User } from '../_models/user';
-import { map } from 'rxjs';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { LikesService } from './likes.service';
 import { PresenceService } from './presence.service';
@@ -15,16 +16,14 @@ export class AccountService {
   private presenceService = inject(PresenceService);
   baseUrl = environment.apiUrl;
   currentUser = signal<User | null>(null);
-  roles = computed(()=> {
+  roles = computed(() => {
     const user = this.currentUser();
     if (user && user.token) {
-      //const role = JSON.parse(atob(user.token.split('.')[1])).role
-      return JSON.parse(atob(user.token.split('.')[1])).role
-      //return Array.isArray(role) ? role : [role];
+      const role = JSON.parse(atob(user.token.split('.')[1])).role;
+      return Array.isArray(role) ? role:[role]
     }
-    return null;
-    //return [];
-  })
+    return [];
+  });
 
   login(model: any) {
     return this.http.post<User>(this.baseUrl + 'account/login', model).pipe(
@@ -51,7 +50,7 @@ export class AccountService {
     localStorage.setItem('user', JSON.stringify(user));
     this.currentUser.set(user);
     this.likeService.getLikeIds();
-    this.presenceService.createHubConnection(user)
+    this.presenceService.createHubConnection(user);
   }
 
   logout() {

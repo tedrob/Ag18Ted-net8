@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace API.Entities;
+namespace API;
 [Table("MatchingNumbers")]
 public class MatchingNumber
 {

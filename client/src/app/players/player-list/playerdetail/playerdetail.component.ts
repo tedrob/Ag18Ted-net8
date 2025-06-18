@@ -39,6 +39,8 @@ export class PlayerdetailComponent implements OnInit, OnDestroy {
         this.PLplayerList.push(player.playername.toString());
       }
       console.log('PlayerDetailComponent getPlayers2 PlplayerList', this.PLplayerList.length);
+      console.log('PlayerDetailComponent getPlayers2 PlplayerList', this.PLplayerList);
+
 
     });
     this.playerService.receiveMsg1().subscribe({
@@ -61,7 +63,7 @@ export class PlayerdetailComponent implements OnInit, OnDestroy {
     if (this.urlCache.has(item.playername)) {
       return this.urlCache.get(item.playername);
     } else {
-      console.log('PlayerDetailComponent getEmbedURL', item.playername);
+      console.log('PlayerDetailComponent getEmbedURL', item.playername, ' Plplaylisttem', this.PLplayerList);
     }
     let z = 0;
     let i;// = 0;
@@ -89,13 +91,14 @@ export class PlayerdetailComponent implements OnInit, OnDestroy {
     let url = this.urlCache.get(item.playername);
 
     const lnk1 = item.playername
-    const lnk2 =
-      '?rel=0?version=3&amp;autoplay=1&amp;controls=1&loop=1&playlist=' + playerlist2;
+    const lnk2 = '?rel=0?version=3&amp;autoplay=1&amp;controls=1&loop=1&playlist=' + this.PLplayerList
+      // '?rel=0?version=3&amp;autoplay=1&amp;controls=1&loop=1&playlist=' + playerlist2;
+      console.log('PlayerDetailComponent getEmbedURL lnk1', lnk1, ' lnk2', lnk2);
 
     if (!url) {
       url = this.sanitizer.bypassSecurityTrustResourceUrl(
         'https://www.youtube.com/embed/' + lnk1 + '?enablejasapi=1; allow="accelerometer; autoplay=1;' + lnk2);
-      console.log('PlayerDetailComponent getEmbedURL url', url);
+      console.log('PlayerDetailComponent getEmbedURL url', url , '');
       this.urlCache.set(item.playername, url);
     }
     return url;

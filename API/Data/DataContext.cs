@@ -12,7 +12,8 @@ public class DataContext(DbContextOptions options) : IdentityDbContext<AppUser,A
     public DbSet<UserLike> Likes { get; set; } = null!;
     public DbSet<Message> Messages { get; set; } = null!;
     public DbSet<Group> Groups { get; set; } = null!;
-    public DbSet<Connection> Connections { get; set; } = null!;    
+    public DbSet<Connection> Connections { get; set; } = null!; 
+    public DbSet<Photo> Photos { get; set; } = null!;   
     public DbSet<AppPlayer> Players { get; set; } = null!;
     public DbSet<AppLottery> Lotteries { get; set; } = null!;
 
@@ -56,5 +57,9 @@ public class DataContext(DbContextOptions options) : IdentityDbContext<AppUser,A
             .HasOne(x => x.Sender)
             .WithMany(x => x.MessagesSent)
             .OnDelete(DeleteBehavior.Restrict);
+
+        builder.Entity<Photo>().HasQueryFilter(p => p.IsApproved);
+
+        //builder.ApplyUtcDateTimeConverter(); // Removed or implement this extension method if needed
     }
 }

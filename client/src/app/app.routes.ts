@@ -18,8 +18,6 @@ import { ServerErrorComponent } from './errors/server-error/server-error.compone
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { preventUnsavedChangesGuard } from './_guards/prevent-unsaved-changes.guard';
 import { memberDetailedResolver } from './_resolvers/member-detailed.resolver';
-import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
-import { adminGuard } from './_guards/admin.guard';
 import { TestThisComponent } from './testThis/testThis.component';
 import { TestTStartComponent } from './testThis/testT-start/testT-start.component';
 import { TestTListComponent } from './testThis/testT-list/testT-list.component';
@@ -28,6 +26,8 @@ import { NgModule } from '@angular/core';
 import { TestTItemComponent } from './testThis/testT-list/testT-item/testT-item.component';
 import { testThisRoutes } from './testThis/testThis.routes';
 import { PlayersComponent } from './players/players.component';
+import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
+import { adminGuard } from './_guards/admin.guard';
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   {
@@ -63,11 +63,6 @@ export const routes: Routes = [
           },
         ],
       },
-      //{ path: 'players/:playername', component: PlayerDetailComponent },
-      //{ path: 'players/:player.description', component: PlayerDetailComponent },
-      // { path: ':player.description', component: PlayerDetailComponent },
-      //{ path: 'players/edit', component: PlayerEditComponent },
-
       { path: 'games', component: GameListComponent },
       { path: 'games/:id', component: GameDetailComponent },
       {
@@ -80,74 +75,48 @@ export const routes: Routes = [
           },
         ],
       },
-      //{ path: 'lotteries/lottery-detail', component: LotteryDetailComponent },
       { path: 'lists', component: ListsComponent },
       { path: 'messages', component: MessagesComponent },
-      {
-        path: 'admin',
-        component: AdminPanelComponent,
-        canActivate: [adminGuard],
-      },
+      { path: 'admin', component: AdminPanelComponent, canActivate: [adminGuard] },
       // {
-      //   path: 'player',
-      //   title: 'PlayersZi',
-      //   component: PlayerComponent,
+      //   path: 'testThis',
+      //   title: 'testTi',
+      //   component: TestThisComponent,
       //   children: [
+      //     { path: 'testT-start/testT-start', component: TestTStartComponent },
       //     {
-      //       path: 'players/player',
-      //       title: 'player',
-      //       component: PlayerListComponent,
+      //       path: 'testT-list/testT-list',
+      //       component: TestTListComponent,
+      //       pathMatch: 'full',
+      //       children: [
+      //         {
+      //           path: 'testT-item/testT',
+      //           component: TestTItemComponent,
+      //           pathMatch: 'full',
+      //         },
+      //         {
+      //           path: 'testT-detail/:testT-detail',
+      //           component: TestTDetailComponent,
+      //           pathMatch: 'full',
+      //         },
+      //       ],
       //     },
       //   ],
       // },
-      {
-        path: 'testThis',
-        title: 'testTi',
-        component: TestThisComponent,
-        children: [
-          { path: 'testT-start/testT-start', component: TestTStartComponent },
-          {
-            path: 'testT-list/testT-list',
-            component: TestTListComponent,
-            pathMatch: 'full',
-            children: [
-              {
-                path: 'testT-item/testT',
-                component: TestTItemComponent,
-                pathMatch: 'full',
-              },
-              {
-                path: 'testT-detail/:testT-detail',
-                component: TestTDetailComponent,
-                pathMatch: 'full',
-              },
-            ],
-          },
-        ],
-      },
-      //   ],
-
-      //   //     { path: 'testT-item/testT-item', component: TestTItemComponent },
-      //   //     {
-      //   //       path: 'testT-detail/testT-detail',
-      //   //       component: TestTDetailComponent,
-      //   //     },
-      //   //   ],
-      // },
-
-      { path: 'errors', component: TestErrorsComponent },
-      { path: 'not-found', component: NotFoundComponent },
-      { path: 'server-error', component: ServerErrorComponent },
-      { path: '**', component: HomeComponent, pathMatch: 'full' },
+      {path: 'admin', component: AdminPanelComponent, canActivate: [adminGuard]}
     ],
   },
+  { path: 'errors', component: TestErrorsComponent },
+  { path: 'not-found', component: NotFoundComponent },
+  { path: 'server-error', component: ServerErrorComponent },
+  { path: '**', component: HomeComponent, pathMatch: 'full' },
 ];
 
-@NgModule({
-  imports: [
-    RouterModule.forRoot(routes, { useHash: true }),
-    RouterModule.forRoot(routes, { useHash: true }),
-    RouterModule.forChild(testThisRoutes),
-  ],
-})
-export class AppRoutingModule {}
+// @NgModule({
+//   imports: [
+//     RouterModule.forRoot(routes, { useHash: true }),
+//     RouterModule.forRoot(routes, { useHash: true }),
+//     RouterModule.forChild(testThisRoutes),
+//   ],
+// })
+// export class AppRoutingModule {}

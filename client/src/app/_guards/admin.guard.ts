@@ -7,7 +7,11 @@ export const adminGuard: CanActivateFn = (route, state) => {
   const accountService = inject(AccountService);
   const toastr = inject(ToastrService);
 
-  if (accountService.roles().includes('Admin') || accountService.roles().includes('Moderator') || accountService.roles().includes('Helper')) {
+  if (
+    accountService.roles().includes('Admin') ||
+    accountService.roles().includes('Moderator') ||
+    accountService.roles().includes('Helper')
+  ) {
     return true;
   } else {
     toastr.error('You cannot enter this area');

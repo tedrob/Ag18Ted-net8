@@ -36,11 +36,12 @@ public class Seed
 
         foreach (var user in users)
         {
+            user.Photos.First().IsApproved = true;
             user.UserName = user.UserName!.ToLower();
             await userManager.CreateAsync(user, "Pa$$w0rd");
             await userManager.AddToRoleAsync(user, "Member");
         }
-        
+
         var admin = new AppUser
         {
             UserName = "admin",
@@ -63,9 +64,6 @@ public class Seed
         await userManager.AddToRolesAsync(admin, ["Admin", "Moderator"]);
         await userManager.CreateAsync(helper, "Pa$$w0rdH");
         await userManager.AddToRolesAsync(helper, ["Helper", "Moderator"]);
-        
-
-
     }
     public static async Task SeedPlayers(DataContext context)
     {
@@ -73,7 +71,7 @@ public class Seed
 
         var playerData = await File.ReadAllTextAsync("Data/PlayerSeedData.json");
 
-        var options = new JsonSerializerOptions{PropertyNameCaseInsensitive = true};
+        var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
 
         var players = JsonSerializer.Deserialize<List<AppPlayer>>(playerData, options);
 
@@ -92,7 +90,7 @@ public class Seed
 
         var lotteryData = await File.ReadAllTextAsync("Data/LotterySeedData.json");
 
-        var options = new JsonSerializerOptions{PropertyNameCaseInsensitive = true};
+        var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
 
         var lotteries = JsonSerializer.Deserialize<List<AppLottery>>(lotteryData, options);
 

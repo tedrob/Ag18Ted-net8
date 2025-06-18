@@ -18,9 +18,8 @@ public class AccountController(UserManager<AppUser> userManager, ITokenService t
     public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
     {
         if (await UserExists(registerDto.Username)) return BadRequest("Username is taken");
-        var user = mapper.Map<AppUser>(registerDto);
 
-        user = mapper.Map<AppUser>(registerDto);
+        var user = mapper.Map<AppUser>(registerDto);        
 
         user.UserName = registerDto.Username.ToLower();
 

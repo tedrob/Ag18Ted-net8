@@ -2,7 +2,7 @@ using API.DTOs;
 using API.Entities;
 using API.Helpers;
 
-namespace API.Interfaces;
+namespace API;
 
 public interface IUserRepository
 {
@@ -10,6 +10,7 @@ public interface IUserRepository
     Task<IEnumerable<AppUser>> GetUsersAsync();
     Task<AppUser?> GetUserByIdAsync(int id);
     Task<AppUser?> GetUserByUsernameAsync(string username);
-    Task<PagedList<MemberDto?>> GetMembersAsync(UserParams userParams);
-    Task<MemberDto?> GeMemberAsync(string username);
+    Task<PagedList<MemberDto>> GetMembersAsync(UserParams userParams);
+    Task<MemberDto?> GeMemberAsync(string username, bool isCurrentUser = false);
+    Task<AppUser?> GetUserByPhotoId(int photoId);
 }

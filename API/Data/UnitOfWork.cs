@@ -4,17 +4,19 @@ namespace API.Data;
 
 public class UnitOfWork(DataContext context, IUserRepository userRepository, 
     ILikesRepository likesRepository, IMessageRepository messageRepository, 
-    IPlayerRepository playerRepository, ILotteryRepository lotteryRepository) : IUnitOfWork
-{
+    IPhotoRepository photoRepository, IPlayerRepository playerRepository, ILotteryRepository lotteryRepository) : IUnitOfWork
+{   
     public IUserRepository UserRepository => userRepository;
 
     public IMessageRepository MessageRepository => messageRepository;
 
     public ILikesRepository LikesRepository => likesRepository;
-
+    public IPhotoRepository PhotoRepository => photoRepository;
     public IPlayerRepository PlayerRepository => playerRepository;
 
     public ILotteryRepository LotteryRepository => lotteryRepository;
+
+    
 
     public async Task<bool> Complete()
     {

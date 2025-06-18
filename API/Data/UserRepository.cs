@@ -1,22 +1,27 @@
+using API.Data;
 using API.DTOs;
 using API.Entities;
 using API.Helpers;
-using API.Interfaces;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 
-namespace API.Data;
+namespace API;
 
 public class UserRepository(DataContext context, IMapper mapper) : IUserRepository
 {
-    public async Task<MemberDto?> GeMemberAsync(string username)
+    public async Task<MemberDto?> GeMemberAsync(string username, bool isCurrentUser = false)
     {
-        return await context.Users
-        .Where(x => x.UserName == username)
+        var query = context.Users
+            .Where(x => x.UserName == username)
             .ProjectTo<MemberDto>(mapper.ConfigurationProvider)
-            .SingleOrDefaultAsync();
-    }    
+            .AsQueryable();
+
+        if (isCurrentUser) query = query.IgnoreQueryFilters();
+
+        return await query.FirstOrDefaultAsync();
+    }
+
     public async Task<PagedList<MemberDto?>> GetMembersAsync(UserParams userParams)
     {
         var query = context.Users.AsQueryable();
@@ -28,7 +33,7 @@ public class UserRepository(DataContext context, IMapper mapper) : IUserReposito
             query = query.Where(x => x.Gender == userParams.Gender);
         }
 
-        var minDob = DateOnly.FromDateTime(DateTime.Today.AddYears(-userParams.MaxAge-1));
+        var minDob = DateOnly.FromDateTime(DateTime.Today.AddYears(-userParams.MaxAge - 1));
         var MaxDob = DateOnly.FromDateTime(DateTime.Today.AddYears(-userParams.MinAge));
 
         query = query.Where(x => x.DateOfBirth >= minDob && x.DateOfBirth <= MaxDob);
@@ -41,23 +46,37 @@ public class UserRepository(DataContext context, IMapper mapper) : IUserReposito
 
         return await PagedList<MemberDto?>.CreateAsync(query.ProjectTo<MemberDto>(mapper.ConfigurationProvider),
             userParams.PageNumber, userParams.PageSize);
+
     }
+
     public async Task<AppUser?> GetUserByIdAsync(int id)
     {
         return await context.Users.FindAsync(id);
     }
+
+    public async Task<AppUser?> GetUserByPhotoId(int photoId)
+    {
+        return await context.Users
+            .Include(x => x.Photos)
+            .IgnoreQueryFilters()
+            .Where(p => p.Photos.Any(p => p.Id == photoId))
+            .FirstOrDefaultAsync();
+    }    
+
     public async Task<AppUser?> GetUserByUsernameAsync(string username)
     {
         return await context.Users
-        .Include(x => x.Photos)
-        .SingleOrDefaultAsync(x => x.UserName == username);
+            .Include(x => x.Photos)
+            .SingleOrDefaultAsync(x => x.UserName == username);
     }
+
     public async Task<IEnumerable<AppUser>> GetUsersAsync()
     {
         return await context.Users
         .Include(x => x.Photos)
         .ToListAsync();
     }
+
     public void Update(AppUser user)
     {
         context.Entry(user).State = EntityState.Modified;

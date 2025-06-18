@@ -1,6 +1,5 @@
 import { Directive, inject, Input, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 import { AccountService } from '../_services/account.service';
-import { ActivatedRoute } from '@angular/router';
 
 @Directive({
   selector: '[appHasRole]', //*appHasRole
@@ -11,8 +10,6 @@ export class HasRoleDirective implements OnInit {
   private accountService = inject(AccountService);
   private viewContainerRef = inject(ViewContainerRef);
   private templateRef = inject(TemplateRef);
-
-  constructor(private route:  ActivatedRoute){}
 
   ngOnInit(): void {
 

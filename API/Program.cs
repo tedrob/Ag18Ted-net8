@@ -1,5 +1,6 @@
+using CloudinaryDotNet;
+using API;
 using API.Data;
-using API.Entities;
 using API.Extensions;
 using API.Middleware;
 using API.SignalR;
@@ -7,7 +8,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-
 
 // Add services to the container.
 builder.Services.AddApplicationServices(builder.Configuration);
@@ -22,6 +22,9 @@ app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowCredentials()
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseDefaultFiles();
+app.UseStaticFiles();
 
 app.MapControllers();
 app.MapHub<PresenceHub>("hubs/presence");

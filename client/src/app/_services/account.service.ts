@@ -1,7 +1,7 @@
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable, computed, inject, signal } from '@angular/core';
 import { User } from '../_models/user';
-import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { LikesService } from './likes.service';
@@ -20,7 +20,7 @@ export class AccountService {
     const user = this.currentUser();
     if (user && user.token) {
       const role = JSON.parse(atob(user.token.split('.')[1])).role;
-      return Array.isArray(role) ? role:[role]
+      return Array.isArray(role) ? role:[role];
     }
     return [];
   });
@@ -54,7 +54,6 @@ export class AccountService {
   }
 
   logout() {
-    ('user');
     localStorage.removeItem('user');
     this.currentUser.set(null);
     this.presenceService.stopHubConnection();

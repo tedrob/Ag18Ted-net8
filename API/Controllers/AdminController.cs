@@ -57,7 +57,7 @@ IPhotoService photoService) : BaseApiController
     {
         var photos = await unitOfWork.PhotoRepository.GetUnapprovedPhotos();
 
-        return Ok("Admins or moderators can see this");
+        return Ok(photos);
     }
 
     [Authorize(Policy = "ModeratePhotoRole")]

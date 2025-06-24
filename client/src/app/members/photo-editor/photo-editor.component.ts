@@ -1,4 +1,4 @@
-import { Component, inject, input, OnInit, output } from '@angular/core';
+import { Component, inject, Input, OnInit, output } from '@angular/core';
 import { Member } from '../../_models/member';
 import { DecimalPipe, NgClass, NgFor, NgIf, NgStyle } from '@angular/common';
 import { FileUploadModule, FileUploader } from 'ng2-file-upload';
@@ -17,7 +17,7 @@ import { MembersService } from '../../_services/members.service';
 export class PhotoEditorComponent implements OnInit {
   private accountService = inject(AccountService);
   private memberService = inject(MembersService);
-  member = input.required<Member>();
+  @Input() member!: Member;
   uploader?: FileUploader;
   hasBaseDropZoneOver = false;
   baseUrl = environment.apiUrl;
@@ -33,8 +33,8 @@ export class PhotoEditorComponent implements OnInit {
 
   deletePhoto(photo: Photo) {
     this.memberService.deletePhoto(photo).subscribe({
-      next: _ => {
-        const updatedMember = {...this.member()};
+      next: (_) => {
+        const updatedMember = {...this.member};
         updatedMember.photos = updatedMember.photos.filter(x => x.id !== photo.id);
         this.memberChange.emit(updatedMember);
       }
@@ -42,14 +42,14 @@ export class PhotoEditorComponent implements OnInit {
   }
 
   setMainPhoto(photo: Photo) {
-    this.memberService.SetMainPhoto(photo).subscribe({
+    this.memberService.setMainPhoto(photo).subscribe({
       next: _ => {
         const user = this.accountService.currentUser();
         if (user) {
           user.photoUrl = photo.url;
           this.accountService.setCurrentUser(user)
         }
-        const updatedMember = {...this.member()}
+        const updatedMember = {...this.member}
         updatedMember.photoUrl = photo.url;
         updatedMember.photos.forEach(p => {
           if (p.isMain) p.isMain = false;
@@ -77,7 +77,7 @@ export class PhotoEditorComponent implements OnInit {
 
     this.uploader.onSuccessItem = (item, response, status, headers) => {
       const photo = JSON.parse(response);
-      const updatedMember = { ...this.member() };
+      const updatedMember = { ...this.member };
       updatedMember.photos.push(photo);
       this.memberChange.emit(updatedMember);
       if (photo.isMain) {
@@ -95,5 +95,5 @@ export class PhotoEditorComponent implements OnInit {
       }
     };
   }
-  
+
 }

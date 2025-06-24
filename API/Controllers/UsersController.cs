@@ -17,8 +17,12 @@ public class UsersController(IUnitOfWork unitOfWork, IMapper mapper,
     [HttpGet]
     public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers([FromQuery] UserParams userParams)
     {
-
+        var gender = await unitOfWork.UserRepository.GetUserGender(User.GetUsername());    
         userParams.CurrentUsername = User.GetUsername();
+
+        if (string.IsNullOrEmpty(userParams.Gender))
+            userParams.Gender = gender == "male" ? "female" : "male";
+
         var users = await unitOfWork.UserRepository.GetMembersAsync(userParams);
 
         Response.AddPaginationHeader(users);
@@ -26,7 +30,7 @@ public class UsersController(IUnitOfWork unitOfWork, IMapper mapper,
         return Ok(users);
     }
 
-    [HttpGet("{username}")] // /api/users/2
+    [HttpGet("{username}", Name = "")] // /api/users/2
     public async Task<ActionResult<MemberDto>> GetUser(string username)
     {
         var currentUsername = User.GetUsername();
@@ -110,7 +114,7 @@ public class UsersController(IUnitOfWork unitOfWork, IMapper mapper,
 
         if (user == null) return BadRequest("User not found");
 
-        var photo = await unitOfWork.PhotoRepository.GetPhotoById(photoId);//user.Photos.FirstOrDefault(x => x.Id == photoId);
+        var photo = await unitOfWork.PhotoRepository.GetPhotoById(photoId);
 
         if (photo == null || photo.IsMain) return BadRequest("This photo cannot be deleted");
 

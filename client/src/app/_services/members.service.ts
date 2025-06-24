@@ -66,7 +66,7 @@ export class MembersService {
     return this.http.put(this.baseUrl + 'users', member).pipe();
   }
 
-  SetMainPhoto(photo: Photo) {
+  setMainPhoto(photo: Photo) {
     return this.http
       .put(this.baseUrl + 'users/set-main-photo/' + photo.id, {})
       .pipe();

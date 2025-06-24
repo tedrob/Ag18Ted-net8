@@ -4,12 +4,11 @@ import { PlayersService } from '../../../_services/players.service';
 import { CommonModule } from '@angular/common';
 import { Player } from '../../../_models/player';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { YouTubePlayer } from '@angular/youtube-player';
 
 @Component({
   selector: 'app-playerdetail',
   standalone: true,
-  imports: [CommonModule, YouTubePlayer],
+  imports: [CommonModule],
   templateUrl: './playerdetail.component.html',
   styleUrls: ['./playerdetail.component.css'],
 })
@@ -92,7 +91,6 @@ export class PlayerdetailComponent implements OnInit, OnDestroy {
 
     const lnk1 = item.playername
     const lnk2 = '?rel=0?version=3&amp;autoplay=1&amp;controls=1&loop=1&playlist=' + this.PLplayerList
-      // '?rel=0?version=3&amp;autoplay=1&amp;controls=1&loop=1&playlist=' + playerlist2;
       console.log('PlayerDetailComponent getEmbedURL lnk1', lnk1, ' lnk2', lnk2);
 
     if (!url) {

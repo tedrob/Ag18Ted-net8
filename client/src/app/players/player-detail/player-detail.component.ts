@@ -1,15 +1,14 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { PlayersService } from '../../_services/players.service';
-import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Player } from '../../_models/player';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
-import { YouTubePlayerModule } from '@angular/youtube-player';
 
 @Component({
   selector: 'app-player-detail',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, YouTubePlayerModule],
+  imports: [CommonModule],
   templateUrl: '../player-detail/player-detail.component.html',
   styleUrl: '../player-detail/player-detail.component.css',
 })

@@ -1,1 +1,5 @@
-{}
+{
+    "appService.preDeployTask": "publish-release",
+    "appService.deploySubpath": "API\\bin\\Release\\net8.0\\publish",
+    "appService.defaultWebAppToDeploy": "/subscriptions/bef44598-91ed-4856-a1ec-22e814782c5e/resourceGroups/TedAZ_group/providers/Microsoft.Web/sites/TedAZ"
+}

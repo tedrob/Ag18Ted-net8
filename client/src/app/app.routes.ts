@@ -3,7 +3,6 @@ import { HomeComponent } from './home/home.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { PlayerListComponent } from './players/player-list/player-list.component';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
-import { PlayerDetailComponent } from './players/player-detail/player-detail.component';
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 import { AboutComponent } from './about/about/about.component';
@@ -21,6 +20,9 @@ import { memberDetailedResolver } from './_resolvers/member-detailed.resolver';
 import { PlayersComponent } from './players/players.component';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { adminGuard } from './_guards/admin.guard';
+import { PlayerStartComponent } from './players/player-start/player-start.component';
+import { PlayerItemComponent } from './players/player-list/player-item/player-item.component';
+import { PlayerdetailComponent } from './players/player-list/playerdetail/playerdetail.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -31,22 +33,46 @@ export const routes: Routes = [
     children: [
       { path: 'about', component: AboutComponent },
       { path: 'members', component: MemberListComponent },
-      { path: 'members/:username', component: MemberDetailComponent,
-        resolve: { member: memberDetailedResolver }},
-      { path: 'member/edit', component: MemberEditComponent,
-        canDeactivate: [preventUnsavedChangesGuard]},
-      { path: 'players', title: 'PlayersT', component: PlayersComponent },
+      {
+        path: 'members/:username',
+        component: MemberDetailComponent,
+        resolve: { member: memberDetailedResolver },
+      },
+      {
+        path: 'member/edit',
+        component: MemberEditComponent,
+        canDeactivate: [preventUnsavedChangesGuard],
+      },
       {
         path: 'players',
-        title: 'PlayersA',
-        component: PlayerListComponent,
+        title: 'PlayersT',
+        component: PlayersComponent,
         children: [
           {
-            path: 'player-detail/:player.description',
-            component: PlayerDetailComponent,
+            path: 'players/player-list',
+            title: 'List',
+            component: PlayerListComponent,
+            children: [
+              {
+                path: 'players/player-list/player-start',
+                title: 'playerStart',
+                component: PlayerStartComponent,
+              },
+              {
+                path: 'players/player-list/player-item',
+                title: 'playerItem',
+                component: PlayerItemComponent,
+              },
+              {
+                path: 'players/player-list/playerdetail',
+                title: 'playerdetail',
+                component: PlayerdetailComponent,
+              }
+            ],
           },
         ],
       },
+
       { path: 'games', component: GameListComponent },
       { path: 'games/:id', component: GameDetailComponent },
       {
@@ -61,7 +87,11 @@ export const routes: Routes = [
       },
       { path: 'lists', component: ListsComponent },
       { path: 'messages', component: MessagesComponent },
-      { path: 'admin', component: AdminPanelComponent, canActivate: [adminGuard] },
+      {
+        path: 'admin',
+        component: AdminPanelComponent,
+        canActivate: [adminGuard],
+      },
     ],
   },
   { path: 'errors', component: TestErrorsComponent },

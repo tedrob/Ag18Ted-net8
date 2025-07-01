@@ -15,7 +15,7 @@ public static class ApplicationServiceExtensions
         services.AddControllers();
         services.AddDbContext<DataContext>(opt =>
         {
-            _ = opt.UseSqlite(config.GetConnectionString("DefaultConnection"));
+            _ = opt.UseSqlServer(config.GetConnectionString("DefaultConnection"));
         });
         services.AddCors();
         services.AddScoped<ITokenService, TokenService>();

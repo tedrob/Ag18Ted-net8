@@ -35,7 +35,7 @@ export class MessageService {
       .build();
 
     this.hubConnection.start()
-      .catch((error) => console.log(error, ' Error starting hub connection'))
+      .catch((error) => console.log(error, ' Error starting hub connection 2'))
       .finally(() => this.busyService.idle());
 
     this.hubConnection.on('ReceiveMessageThread', (messages) => {

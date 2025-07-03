@@ -59,7 +59,7 @@
       "@angular/forms": "$@angular/forms"
     },
     "ng2-file-upload": {
-      "@anular/common": "$@angular/common",
+      "@angular/common": "$@angular/common",
       "@angular/core": "$@angular/core"
     }
   }

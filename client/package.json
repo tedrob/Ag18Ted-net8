@@ -61,6 +61,11 @@
     "ng2-file-upload": {
       "@angular/common": "$@angular/common",
       "@angular/core": "$@angular/core"
+    },
+    "ngx-daterangepicker-bootstrap": {
+      "@angular/common": "$@angular/common",
+      "@angular/core": "$@angular/core",
+      "@angular/forms": "$@angular/forms"
     }
   }
 }

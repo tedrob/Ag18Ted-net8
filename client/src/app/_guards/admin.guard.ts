@@ -8,9 +8,9 @@ export const adminGuard: CanActivateFn = (route, state) => {
   const toastr = inject(ToastrService);
 
   if (
-    accountService.roles().includes('Admin') ||
-    accountService.roles().includes('Moderator') ||
-    accountService.roles().includes('Helper')
+    (accountService.roles() as string[]).includes('Admin') ||
+    (accountService.roles() as string[]).includes('Moderator') ||
+    (accountService.roles() as string[]).includes('Helper')
   ) {
     return true;
   } else {

@@ -8,17 +8,21 @@ import { UserParams } from '../_models/userParams';
 import { of } from 'rxjs';
 import { AccountService } from './account.service';
 import { setPaginatedResponse, setPaginationHeaders } from './paginationHelper';
+import { PresenceService } from './presence.service';
 @Injectable({
   providedIn: 'root',
 })
 export class MembersService {
   private http = inject(HttpClient);
   private acountService = inject(AccountService);
+  private presentService = inject(PresenceService);
   baseUrl = environment.apiUrl;
   paginatedResult = signal<PaginatedResult<Member[]> | null>(null);
   memberCache = new Map();
   user = this.acountService.currentUser();
   userParams = signal<UserParams>(new UserParams(this.user));
+
+  constructor() { }
 
   resetUserParams() {
     this.userParams.set(new UserParams(this.user));

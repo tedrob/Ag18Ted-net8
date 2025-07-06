@@ -10,6 +10,7 @@ import { GameDetailComponent } from './games/game-detail/game-detail.component';
 import { GameListComponent } from './games/game-list/game-list.component';
 import { LotteryListComponent } from './lotteries/lottery-list/lottery-list.component';
 import { LotteryDetailComponent } from './lotteries/lottery-detail/lottery-detail.component';
+import { LotteryStartComponent } from './lotteries/lottery-start/lottery-start.component';
 import { authGuard } from './_guards/auth.guard';
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
@@ -67,7 +68,7 @@ export const routes: Routes = [
                 path: 'players/player-list/playerdetail',
                 title: 'playerdetail',
                 component: PlayerdetailComponent,
-              }
+              },
             ],
           },
         ],
@@ -80,7 +81,13 @@ export const routes: Routes = [
         component: LotteryListComponent,
         children: [
           {
-            path: 'lottery-detail/:lottery.description',
+            path: 'lotteries/lottery-list/lottery-start',
+            title: 'lotteryStart',
+            component: LotteryStartComponent,
+          },
+          {
+            path: 'lotteries/lottery-list/lottery-detail',
+            title: 'lotteryDetail',
             component: LotteryDetailComponent,
           },
         ],

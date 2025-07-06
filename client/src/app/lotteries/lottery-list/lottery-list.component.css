@@ -1,0 +1,29 @@
+#left {
+  position: relative;
+  top: 0px;
+  bottom: 0;
+  left: 0;
+  width: 30%;
+  max-height: 440px;
+  overflow-y: scroll;
+}
+.lottery-list {
+  position: relative;
+  height: 6em;
+}
+.lottery {
+  background-image: url('/assets/img/photo-SnowNWater.jpg');
+  background-repeat: no-repeat;
+  background-size:100% 100%!important;
+  height:45em;
+  overflow-x: hidden;
+}
+.lottery-card {
+  position: relative;
+  height: .6em;
+}
+
+.lottery-item {
+  background-color: rgb(240, 255, 249);
+  background-size: 100% 100% !important;
+}

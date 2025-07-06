@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Lottery } from '../_models/lottery';
-import { of, tap } from 'rxjs';
+import { Observable, of, Subject, tap } from 'rxjs';
+import { LotteryParams } from '../_models/lotteryParams';
 
 @Injectable({
   providedIn: 'root',
@@ -11,11 +12,20 @@ export class LotteriesService {
   private http = inject(HttpClient);
   baseUrl = environment.apiUrl;
   lotteries = signal<Lottery[]>([]);
+  lotteryParams = signal<LotteryParams>(new LotteryParams(null));
+  lotteryChange = signal<Lottery | null>(null);
+  lotteryChanged: any;
+  private data = new Subject<Lottery>();
+  data$ = this.data.asObservable();
+  subject = new Subject<Lottery>();
+  lotterySubject = new Subject<Lottery>();
 
-  getLotteries() {
-    return this.http.get<Lottery[]>(this.baseUrl + 'lotteries').subscribe({
-      next: (lotteries) => this.lotteries.set(lotteries),
-    });
+  getLotteries(): Observable<Lottery[]> {
+    return this.http.get<Lottery[]>(this.baseUrl + 'lotteries').pipe(
+      tap((lotteries) => {
+        this.lotteries.set(lotteries);
+      })
+    );
   }
 
   getLottery(lottername: string) {
@@ -23,6 +33,13 @@ export class LotteriesService {
     if (lottery !== undefined) return of(lottery);
 
     return this.http.get<Lottery>(this.baseUrl + 'lotteries/' + lottername);
+  }
+
+  sendMsg(msg: Lottery) {
+    this.lotterySubject.next(msg);
+  }
+  receiveMsg1(): Observable<Lottery> {
+    return this.lotterySubject.asObservable();
   }
 
   updateLottery(lottery: Lottery) {

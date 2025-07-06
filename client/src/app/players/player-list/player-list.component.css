@@ -12,7 +12,7 @@
   height: 6em;
 }
 .player {
-  background-image: url('/assets/img/coolmusic.jpg');
+  background-image: url('/assetsimg/coolmusic.jpg');
   background-repeat: no-repeat;
   background-size:100% 100%!important;
   height:45em;

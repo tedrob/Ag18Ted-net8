@@ -1,0 +1,10 @@
+<p>Pick a lottery item to play</p>
+
+<div
+  class="list-group-item-heading lottery-item"
+  *ngFor="let lottery of lotteryService.lotteries()"
+  style="cursor: pointer"
+  (click)="onSelectedLottery(lottery)"
+>
+  {{ lottery.lotteryname }}
+</div>

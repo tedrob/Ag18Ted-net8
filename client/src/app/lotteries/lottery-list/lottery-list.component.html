@@ -1,7 +1,19 @@
-<div class="row">
-  <div class="col-2">
-    @for (lottery of lotteryService.lotteries(); track lottery.id) {
-      <p>{{lottery.lotteryname}}</p>
-    }
+<div class="container-fluid lottery">
+  <div class="col-12" style="background-color: green">
+    <hr />
+    <app-lottery-start></app-lottery-start>
+    <hr />
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-4" style="background-color: grey">
+          <app-lottery-item></app-lottery-item>
+          <!-- @for (lottery of lotteryService.lotteries(); track lottery.id) {
+          <p>{{ lottery.lotteryname }}</p>
+          } -->
+        </div>
+        <div class="col-8" style="background-color: rgb(234, 15, 15)">
+          <app-lottery-detail></app-lottery-detail>
+      </div>
+    </div>
   </div>
 </div>

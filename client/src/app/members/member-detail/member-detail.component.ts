@@ -10,6 +10,7 @@ import { MessageService } from '../../_services/message.service';
 import { PresenceService } from '../../_services/presence.service';
 import { AccountService } from '../../_services/account.service';
 import { HubConnectionState } from '@microsoft/signalr';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-member-detail',
@@ -34,6 +35,10 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
   member: Member = {} as Member;
   images: GalleryItem[] = [];
   activeTab?: TabDirective;
+  user = this.accountService.currentUser();
+
+  constructor() {}
+
 
   ngOnInit(): void {
     this.route.data.subscribe({

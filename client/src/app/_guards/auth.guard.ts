@@ -7,7 +7,8 @@ export const authGuard: CanActivateFn = (route, state) => {
   const accountService = inject(AccountService);
   const toastr = inject(ToastrService);
 
-  if (accountService.roles().includes('Admin') || accountService.roles().includes('Moderator') || accountService.roles().includes('Helper')) {
+  const roles = accountService.roles() as string[];
+  if (roles.includes('Admin') || roles.includes('Moderator')) {
     return true;
   } else {
     toastr.error('You shall not pass!');

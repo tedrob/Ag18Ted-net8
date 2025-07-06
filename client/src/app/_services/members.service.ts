@@ -22,7 +22,9 @@ export class MembersService {
   user = this.acountService.currentUser();
   userParams = signal<UserParams>(new UserParams(this.user));
 
-  constructor() { }
+  constructor() {
+    if (this.user) this.userParams.set(new UserParams(this.user));
+   }
 
   resetUserParams() {
     this.userParams.set(new UserParams(this.user));

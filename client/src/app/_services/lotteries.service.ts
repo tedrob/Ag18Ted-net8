@@ -20,6 +20,12 @@ export class LotteriesService {
   subject = new Subject<Lottery>();
   lotterySubject = new Subject<Lottery>();
 
+  getlotterys() {
+    return this.http.get<Lottery[]>(this.baseUrl + 'lotteries').subscribe({
+      next: (lotteries) => this.lotteries.set(lotteries),
+    });
+  }
+
   getLotteries(): Observable<Lottery[]> {
     return this.http.get<Lottery[]>(this.baseUrl + 'lotteries').pipe(
       tap((lotteries) => {
@@ -46,7 +52,9 @@ export class LotteriesService {
     return this.http.put(this.baseUrl + 'lotteries', lottery).pipe(
       tap(() => {
         this.lotteries.update((lotteries) =>
-          lotteries.map((m) => (m.lotteryname === lottery.lotteryname ? lottery : m))
+          lotteries.map((m) =>
+            m.lotteryname === lottery.lotteryname ? lottery : m
+          )
         );
       })
     );

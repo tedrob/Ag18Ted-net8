@@ -20,12 +20,12 @@ export class LotteryItemComponent implements OnInit {
   @Output() selectedLotteryEvent = new EventEmitter<string>();
   lotterryItem: Lottery | null = null;
   lotteryService = inject(LotteriesService);
-  data = inject(LotteriesService);
+  //data = inject(LotteriesService);
   status!: string;
   lotterys: Lottery[] = [];
   OutputSignal = signal<Lottery>(this.lotterys[0] || ({} as Lottery));
 
-  constructor() {}
+  constructor(private data: LotteriesService) {}
 
   sendMsg(msg: Lottery) {
     msg = this.lotterryItem!;
@@ -33,7 +33,7 @@ export class LotteryItemComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.lotteryService.getLotteries();
+    this.lotteryService.getlotterys();
     this.data.lotteryChanged.subscribe((status: string) => {
       this.status = 'on';
     });

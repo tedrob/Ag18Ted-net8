@@ -5,16 +5,16 @@ import { ToastrService } from 'ngx-toastr';
 
 export const adminGuard: CanActivateFn = (route, state) => {
   const accountService = inject(AccountService);
-  const toastr = inject(ToastrService);
+  const toast = inject(ToastrService);
 
   if (
-    (accountService.roles() as string[]).includes('Admin') ||
-    (accountService.roles() as string[]).includes('Moderator') ||
+    accountService.currentUser()?.roles.includes('Admin') ||
+    accountService.currentUser()?.roles.includes('Moderator') ||
     (accountService.roles() as string[]).includes('Helper')
   ) {
     return true;
   } else {
-    toastr.error('You cannot enter this area');
+    toast.error('You cannot enter this area');
     return false;
   }
 };

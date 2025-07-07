@@ -1,81 +1,85 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
   <div class="container">
-    <a class="navbar-brand" routerLink="/">TedsDev App</a>
+    <a class="navbar-brand" routerLink="/" routerLinkActive="active"
+      >TedsDev App</a
+    >
 
     <ul class="navbar-nav me-auto mb-2 mb-md-0">
-      @if (accountService.currentUser()) {
-      <li class="nav-item">
-        <a routerLink="/about" routerLinkActive="active" class="nav-link"
-          >About</a
-        >
-      </li>
-      <li class="nav-item">
-        <a routerLink="/members" routerLinkActive="active" class="nav-link"
-          >Members</a
-        >
-      </li>
-      <li class="nav-item">
-        <a routerLink="/players" routerLinkActive="active" class="nav-link"
-          >Players</a
-        >
-      </li>
-      <li class="nav-item">
-        <a routerLink="/games" routerLinkActive="active" class="nav-link"
-          >Games</a
-        >
-      </li>
-      <li class="nav-item">
-        <a routerLink="/lotteries" routerLinkActive="active" class="nav-link"
-          >Lotteries</a
-        >
-      </li>
-      <li class="nav-item">
-        <a routerLink="/lists" routerLinkActive="active" class="nav-link"
-          >List</a
-        >
-      </li>
-      <li class="nav-item">
-        <a routerLink="/messages" routerLinkActive="active" class="nav-link"
-          >Messages</a
-        >
-      </li>
-      <li *appHasRole="['Admin', 'Moderator']" class="nav-item">
-        <a
-          routerLink="/admin"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
-          class="nav-link"
-          >Admin</a
-        >
-      </li>
-    }
+      <ng-container *ngIf="accountService.currentUser()">
+        <li class="nav-item">
+          <a routerLink="/about" routerLinkActive="active" class="nav-link"
+            >About</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            routerLink="/members"
+            [routerLinkActiveOptions]="{ exact: true }"
+            routerLinkActive="active"
+            class="nav-link"
+            >Members</a
+          >
+        </li>
+        <li class="nav-item">
+          <a routerLink="/players" routerLinkActive="active" class="nav-link"
+            >Players</a
+          >
+        </li>
+        <li class="nav-item">
+          <a routerLink="/games" routerLinkActive="active" class="nav-link"
+            >Games</a
+          >
+        </li>
+        <li class="nav-item">
+          <a routerLink="/lotteries" routerLinkActive="active" class="nav-link"
+            >Lotteries</a
+          >
+        </li>
+        <li class="nav-item">
+          <a routerLink="/lists" routerLinkActive="active" class="nav-link"
+            >List</a
+          >
+        </li>
+        <li class="nav-item">
+          <a routerLink="/messages" routerLinkActive="active" class="nav-link"
+            >Messages</a
+          >
+        </li>
+        <li *appHasRole="['Admin', 'Moderator']" class="nav-item">
+          <a
+            routerLink="/admin"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="nav-link"
+            >Admin</a
+          >
+        </li>
+      </ng-container>
       <li class="nav-item">
         <a routerLink="/errors" routerLinkActive="active" class="nav-link"
           >Errors</a
         >
       </li>
     </ul>
-
-    @if (accountService.currentUser()) {
-    <div dropdown class="dropdown">
+    <div class="dropdown" *ngIf="accountService.currentUser() as user" dropdown>
       <img
         class="me-2"
-        src="{{
-          accountService.currentUser()?.photoUrl || './assets/img/user.png'
-        }}"
-        alt="user main imgage"
+        src="{{ user.photoUrl || './assets/img/user.png' }}"
+        alt="user photo"
       />
-      <a dropdownToggle class="dropdown-toggle text-light text-decoration-none">
-        Wecome {{ accountService.currentUser()?.knownAs }}
+      <a
+        dropdownToggle
+        class="dropdown-toggle text-light text-decoration-none ms-2 dropdownToggle"
+      >
+        Wecome {{ user?.knownAs }}
       </a>
       <div *dropdownMenu class="dropdown-menu">
         <a routerLink="/member/edit" class="dropdown-item">Edit profile</a>
-        <div class="dropdown-divider"></div>
         <a class="dropdown-item" (click)="logout()">Logout</a>
       </div>
     </div>
-    } @if (!accountService.currentUser()) {
     <form
+      *ngIf="!accountService.currentUser(); async"
       #loginForm="ngForm"
       (ngSubmit)="login()"
       class="d-flex"
@@ -85,6 +89,7 @@
         name="username"
         [(ngModel)]="model.username"
         class="form-control me-2"
+        type="text"
         placeholder="Username"
       />
       <input
@@ -96,6 +101,5 @@
       />
       <button class="btn btn-success" type="submit">Login</button>
     </form>
-    }
   </div>
 </nav>

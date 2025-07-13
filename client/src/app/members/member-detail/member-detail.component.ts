@@ -10,7 +10,6 @@ import { MessageService } from '../../_services/message.service';
 import { PresenceService } from '../../_services/presence.service';
 import { AccountService } from '../../_services/account.service';
 import { HubConnectionState } from '@microsoft/signalr';
-import { take } from 'rxjs';
 
 @Component({
   selector: 'app-member-detail',
@@ -29,7 +28,7 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
   @ViewChild('memberTabs', {static: true}) memberTabs?: TabsetComponent;
   private messageService = inject(MessageService);
   private accountService = inject(AccountService);
-  presenceService = inject(PresenceService);
+  protected presenceService = inject(PresenceService);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   member: Member = {} as Member;

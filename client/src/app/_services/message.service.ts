@@ -18,7 +18,7 @@ import { BusyService } from './busy.service';
 })
 export class MessageService {
   baseUrl = environment.apiUrl;
-  hubUrl = environment.hubsUrl;
+  hubUrl = environment.hubUrl;
   private http = inject(HttpClient);
   private busyService = inject(BusyService)
   hubConnection?: HubConnection;

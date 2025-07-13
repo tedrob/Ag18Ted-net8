@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
 
-namespace API;
+namespace API.Entities;
 
 [Table("Lotteries")]
 public class AppLottery

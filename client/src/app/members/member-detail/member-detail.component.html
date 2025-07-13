@@ -7,7 +7,7 @@
         class="card-img img-thumbnail"
       />
       <div class="card-body">
-        @if (presenceService.onlineUsers().includes(member.username)) {
+        @if (presenceService.onlineUsers().includes(member.id.toString())) {
           <div class="mb-2">
             <i class="fa fa-user-circle text-success"></i> Online now
           </div>

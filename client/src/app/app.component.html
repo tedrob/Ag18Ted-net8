@@ -2,18 +2,6 @@
   <h3>Loading...</h3>
 </ngx-spinner>
 
-<ul class="list">
-  @for (member of members(); track member.id) {
-    <li class="list-row items-center">
-      <img src="/user.png" alt="user avatar" class="size-12 rounded-box">
-      <div>
-        {{member.displayName}}
-      </div>
-      {{member.id}} - {{member.displayName}}</li>
-  }
-</ul>
-<button class="btn btn-primary">Primary</button>
-
 <app-nav></app-nav>
 
 <div class="container" style="margin-top: 100px;">

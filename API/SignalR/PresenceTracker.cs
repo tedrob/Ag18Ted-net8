@@ -1,38 +1,58 @@
 using System;
-using System.Collections.Concurrent;
 
 namespace API.SignalR;
 
 public class PresenceTracker
 {
-    private static readonly ConcurrentDictionary<string,
-        ConcurrentDictionary<string, byte>> OnlineUsers = new();
+    private static readonly Dictionary<string, List<string>> OnlineUsers = [];
 
-    public Task UserConnected(string userId, string connectionId)
+    public Task<bool> UserConnected(string username, string connecttionId)
     {
-        var connections = OnlineUsers.GetOrAdd(userId, _ =>
-            new ConcurrentDictionary<string, byte>());
-        connections.TryAdd(connectionId, 0);
-        return Task.CompletedTask;
-    }
-
-    public Task UserDisconnected(string userId, string connectionId)
-    {
-        if (OnlineUsers.TryGetValue(userId, out var connections))
+        var isOnline = false;
+        lock (OnlineUsers)
         {
-            connections.TryRemove(connectionId, out _);
-            if (connections.IsEmpty)
+            if (OnlineUsers.ContainsKey(username))
             {
-                OnlineUsers.TryRemove(userId, out _);
+                OnlineUsers[username].Add(connecttionId);
+            }
+            else
+            {
+                OnlineUsers.Add(username, [connecttionId]);
+                isOnline = true;
             }
         }
 
-        return Task.CompletedTask;
+        return Task.FromResult(isOnline);
+    }
+
+    public Task<bool> UserDisconnected(string username, string connecttionId)
+    {
+        var isOffline = false;
+        lock (OnlineUsers)
+        {
+            if (!OnlineUsers.ContainsKey(username)) return Task.FromResult(isOffline);
+
+            OnlineUsers[username].Remove(connecttionId);
+
+            if (OnlineUsers[username].Count == 0)
+            {
+                OnlineUsers.Remove(username);
+                isOffline = true;
+            }
+        }
+
+        return Task.FromResult(isOffline);
     }
 
     public Task<string[]> GetOnlineUsers()
     {
-        return Task.FromResult(OnlineUsers.Keys.OrderBy(k => k).ToArray());
+        string[] onlineUsers;
+        lock (OnlineUsers)
+        {
+            onlineUsers = OnlineUsers.OrderBy(k => k.Key).Select(k => k.Key).ToArray();
+        }
+
+        return Task.FromResult(onlineUsers);
     }
 
     public static Task<List<string>> GetConnectionsForUser(string username)
@@ -43,11 +63,10 @@ public class PresenceTracker
         {
             lock (connections)
             {
-                connectionIds = connections.Keys.ToList();
-            }
+                connectionIds = connections.ToList();
+            }            
         }
-        else
-        {
+        else{
             connectionIds = [];
         }
 

@@ -1,3 +1,4 @@
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable, computed, inject, signal } from '@angular/core';
 import { User } from '../_models/user';
@@ -5,7 +6,6 @@ import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { LikesService } from './likes.service';
 import { PresenceService } from './presence.service';
-import { HubConnectionState } from '@microsoft/signalr';
 
 @Injectable({
   providedIn: 'root',
@@ -50,11 +50,7 @@ export class AccountService {
     localStorage.setItem('user', JSON.stringify(user));
     this.currentUser.set(user);
     this.likeService.getLikeIds();
-    if (
-      this.presenceService.hubConnection?.state !== HubConnectionState.Connected
-    ) {
-      this.presenceService.createHubConnection(user);
-    }
+    this.presenceService.createHubConnection(user);
   }
 
   logout() {

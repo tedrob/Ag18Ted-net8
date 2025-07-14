@@ -1,7 +1,6 @@
 using API.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
-using System.Security.Claims;
 
 namespace API.SignalR;
 
@@ -30,7 +29,6 @@ public class PresenceHub(PresenceTracker tracker) : Hub
 
     private string GetUserId()
     {
-        return Context.User?.GetMemberId()
-            ?? throw new HubException("Cannot get member id");
+        return Context.User?.GetUsername() ?? throw new Exception("Cannot get member id");
     }
 }
